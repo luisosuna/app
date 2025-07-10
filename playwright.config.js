@@ -9,6 +9,12 @@ module.exports = defineConfig({
   reporter: 'html',
   use: {
     headless: true,
-    browserName: 'chromium'
+    browserName: 'chromium',
+    baseURL: 'http://localhost:3000'
+  },
+  webServer: {
+    command: 'npm start',
+    port: 3000,
+    reuseExistingServer: !process.env.CI
   }
 });
