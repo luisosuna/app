@@ -15,6 +15,19 @@ function App() {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
+  const safeEval = (expression) => {
+    try {
+      // Basic safety check for allowed characters only
+      if (!/^[0-9+\-*/.() ]+$/.test(expression)) {
+        throw new Error('Invalid expression');
+      }
+      // eslint-disable-next-line no-eval
+      return eval(expression);
+    } catch (error) {
+      return "Error";
+    }
+  };
+
   const updateCalc = value => {
     if ((ops.includes(value) && calc === '') ||
         (ops.includes(value) && ops.includes(calc.slice(-1)))
@@ -25,7 +38,7 @@ function App() {
 
     if(!ops.includes(value))  {
       try {
-        setResult(eval(calc + value.toString()));
+        setResult(safeEval(calc + value.toString()));
       } catch (error) {
         setResult("Error");
       }
@@ -37,7 +50,7 @@ function App() {
     try {
       // Only show preview if expression is valid
       if (calc + value) {
-        setResult(eval(calc + value));
+        setResult(safeEval(calc + value));
       }
     } catch (error) {
       // Don't update result if expression is invalid
@@ -57,7 +70,7 @@ function App() {
   
   const calculate = () => {
     try {
-      setCalc(eval(calc).toString());      
+      setCalc(safeEval(calc).toString());      
     } catch (error) {
       setCalc("Error");
     }
