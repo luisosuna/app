@@ -11,6 +11,7 @@
   --calculator-bg: #ffffff;
   --text-primary: #1e293b;
   --text-secondary: #94a3b8;
+  --button-text: #ffffff;
 }
 
 [data-theme="dark"] {
@@ -20,6 +21,7 @@
   --text-secondary: #94a3b8;
   --light: #1e293b;
   --dark: #f1f5f9;
+  --button-text: #1e293b;
 }
 *{
   margin: 0;
@@ -77,7 +79,7 @@ button{
   appearance: none;
   border: none;
   outline: none;
-  color: #FFF;
+  color: var(--button-text);
   font-size: 28px;
   font-weight: 500;
   padding: 28px;
@@ -117,7 +119,6 @@ button:hover{
   flex: 1 1 33.333%;
   max-width: 33.333%;
   background-color: var(--dark);
-  color: var(--light);
 }
 
 .digits button:hover {
