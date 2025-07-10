@@ -1,8 +1,25 @@
 :root {
   --primary: #2563eb;
+  --primary-hover: #1d4ed8;
   --secondary: #059669;
+  --secondary-hover: #047857;
   --dark: #1e293b;
+  --dark-hover: #0f172a;
   --light: #f1f5f9;
+  --light-hover: #e2e8f0;
+  --background: #f1f5f9;
+  --calculator-bg: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #94a3b8;
+}
+
+[data-theme="dark"] {
+  --background: #0f172a;
+  --calculator-bg: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --light: #1e293b;
+  --dark: #f1f5f9;
 }
 *{
   margin: 0;
@@ -12,8 +29,9 @@
 }
 
 body {
-  background-color: var(--light);
-  
+  background-color: var(--background);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .App{
@@ -27,10 +45,11 @@ body {
 .calculator{
   width: 100%;
   max-width: 600px;
-  background-color: #FFF;
+  background-color: var(--calculator-bg);
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0px 4px 96px rgba(0, 0, 0, 0.15);
+  transition: background-color 0.3s ease;
 }
 
 .display {
@@ -68,6 +87,8 @@ button{
 button:hover{
   opacity: 0.9;
   transform: scale(0.98);
+  background-color: var(--primary-hover, #1d4ed8);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .operators {
@@ -80,6 +101,10 @@ button:hover{
   font-weight: 700;
 }
 
+.operators button:hover {
+  background-color: var(--primary-hover);
+}
+
 .digits {
   display: flex;
   flex-wrap: wrap;
@@ -89,4 +114,41 @@ button:hover{
   flex: 1 1 33.333%;
   max-width: 33.333%;
   background-color: var(--dark);
+}
+
+.digits button:hover {
+  background-color: var(--dark-hover);
+}
+
+.calculator-header {
+  padding: 16px 24px;
+  background-color: var(--calculator-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--text-secondary);
+}
+
+.calculator-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.theme-toggle {
+  background-color: var(--secondary);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: auto;
+}
+
+.theme-toggle:hover {
+  background-color: var(--secondary-hover);
+  transform: scale(1.05);
 }
